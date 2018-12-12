@@ -206,8 +206,8 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-<!-- 							<outputDirectory>/wildfly/standalone/lib/ext</outputDirectory> -->
-							<outputDirectory>${basedir}/target/lib</outputDirectory>
+							<outputDirectory>/wildfly/standalone/lib/ext</outputDirectory>
+<!-- 							<outputDirectory>${basedir}/target/lib</outputDirectory> -->
 							<resources>
 								<resource>
 									<directory>${basedir}/lib</directory>
