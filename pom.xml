@@ -178,11 +178,9 @@
 						</goals>
 					</execution>
 				</executions>
-				<!-- 
 				<configuration>
 					<includeSystemScope>true</includeSystemScope>
 				</configuration>
-				 -->
 			</plugin>
 			<plugin>
 				<groupId>io.fabric8</groupId>
@@ -208,11 +206,12 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
+<!-- 							<outputDirectory>/wildfly/standalone/lib/ext</outputDirectory> -->
 							<outputDirectory>${basedir}/target/lib</outputDirectory>
 							<resources>
 								<resource>
 									<directory>${basedir}/lib</directory>
-									<include>*</include>
+									<include>*.so</include>
 								</resource>
 							</resources>
 						</configuration>
