@@ -15,7 +15,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.dg.etl</groupId>
-	<artifactId>dg-etl-parent</artifactId>
+	<artifactId>dg-etl</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
@@ -203,7 +203,7 @@
 				<executions>
 					<execution>
 						<id>copy-resources</id>
-						<phase>compile</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
