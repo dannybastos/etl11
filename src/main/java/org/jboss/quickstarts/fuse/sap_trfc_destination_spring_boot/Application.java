@@ -33,8 +33,12 @@ public class Application extends SpringBootServletInitializer {
      */
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
     public static void main(String[] args) {
-    	System.setProperty("java.library.path","/wildfly/standalone/dep");
-    	log.info(String.format("java.library.path: %s", System.getProperty("java.library.path")));
+//    	System.setProperty("java.library.path","/wildfly/standalone/dep");
+//    	log.info(String.format("java.library.path: %s", System.getProperty("java.library.path")));
+    	log.info("======================================================");
+    	log.info("======================================================");
+    	log.info("======================================================");
+    	log.info("======================================================");
         SpringApplication.run(Application.class, args);
     }
 
