@@ -30,7 +30,7 @@ public class Application extends SpringBootServletInitializer {
      * A main method to start this application.
      */
     public static void main(String[] args) {
-    	System.setProperty("java.library.path","/opt/app-root/src/lib");
+    	System.setProperty("java.library.path","/wildfly/standalone/lib/ext");
         SpringApplication.run(Application.class, args);
     }
 
