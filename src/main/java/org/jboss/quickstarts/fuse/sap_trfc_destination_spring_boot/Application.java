@@ -16,6 +16,8 @@
  */
 package org.jboss.quickstarts.fuse.sap_trfc_destination_spring_boot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
@@ -29,8 +31,10 @@ public class Application extends SpringBootServletInitializer {
     /**
      * A main method to start this application.
      */
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
     public static void main(String[] args) {
-    	System.setProperty("java.library.path","/wildfly/standalone/lib/ext");
+    	System.setProperty("java.library.path","/wildfly/standalone/dep");
+    	log.info(String.format("java.library.path: %s", System.getProperty("java.library.path")));
         SpringApplication.run(Application.class, args);
     }
 

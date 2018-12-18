@@ -175,7 +175,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>/wildfly/standalone/lib/ext</outputDirectory>
+							<outputDirectory>/wildfly/standalone/dep</outputDirectory>
 							<resources>
 								<resource>
 									<directory>${basedir}/lib</directory>
