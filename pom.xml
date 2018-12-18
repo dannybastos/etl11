@@ -14,8 +14,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>br.dg.etl</groupId>
-	<artifactId>dg-etl</artifactId>
+	<groupId>br.example</groupId>
+	<artifactId>openshift-sample</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
@@ -50,8 +50,6 @@
 		<jco.client.user>OSHIFT_API</jco.client.user>
 		<jco.client.passwd>cal12345</jco.client.passwd>
 		<jco.client.lang>pt</jco.client.lang>
-
-
 	</properties>
 
 	<dependencyManagement>
@@ -100,17 +98,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.springframework.boot</groupId> -->
+<!-- 					<artifactId>spring-boot-starter-tomcat</artifactId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-undertow</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-starter-undertow</artifactId> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.camel</groupId>
@@ -150,6 +148,13 @@
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
+			<resource>
+				<targetPath>../openshift-sample/WEB-INF/</targetPath>
+				<directory>${project.basedir}</directory>
+				<includes>
+					<include>lib/*.jar</include>
+				</includes>
+			</resource>
 		</resources>
 
 		<plugins>
@@ -163,6 +168,24 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>/deployments</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/lib</directory>
+									<include>*.so</include>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.camel</groupId>
@@ -178,9 +201,6 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<includeSystemScope>true</includeSystemScope>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>io.fabric8</groupId>
@@ -195,48 +215,10 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.6</version>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>/wildfly/standalone/lib/ext</outputDirectory>
-<!-- 							<outputDirectory>${basedir}/target/lib</outputDirectory> -->
-							<resources>
-								<resource>
-									<directory>${basedir}/lib</directory>
-									<include>*.so</include>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<outputDirectory>target</outputDirectory>
-					<warName>ROOT</warName>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
 	<repositories>
-		<repository>
-			<id>project.local</id>
-			<name>project</name>
-			<url>file:${project.basedir}/repo</url>
-		</repository>
 		<repository>
 			<id>jboss-fuse-ga</id>
 			<name>JBoss Fuse Community GA Release Repository</name>
@@ -281,7 +263,7 @@
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
-				<finalName>SampleApp</finalName>
+				<finalName>openshift-sample</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -290,7 +272,7 @@
 						<configuration>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<outputDirectory>target</outputDirectory>
-							<warName>ROOT</warName>
+<!-- 							<warName>ROOT</warName> -->
 						</configuration>
 					</plugin>
 				</plugins>
