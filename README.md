@@ -5,6 +5,7 @@ SAP Quick Starts
 
 ***  
 Author: William Collins - Fuse Team  
+Modifyed by: Danny Bastos
 Level: Beginner to Advanced  
 Technologies: SAP, Camel, JBoss Fuse   
 Summary: These quick starts demonstrates how to configure and use the suite of JBoss Fuse SAP Camel components to integrate Apache Camel with SAP.       
